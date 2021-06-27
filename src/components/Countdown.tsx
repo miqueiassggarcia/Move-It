@@ -4,7 +4,8 @@ import styles from "../styles/components/Countdown.module.css"
 
 export function Countdown() {
   const {
-    hasFinished,
+    relieveHasFinished,
+    workHasFinished,
     isActive,
     minutes,
     resetCountdown,
@@ -29,7 +30,7 @@ export function Countdown() {
       </div>
       </div>
 
-      { hasFinished ? (
+      { workHasFinished && relieveHasFinished ? (
         <button
           disabled
           className={styles.countdownButton}
