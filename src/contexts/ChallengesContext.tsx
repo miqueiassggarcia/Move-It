@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import challenges from "../../challenges.json";
 import { LevelUpModel } from "../components/LevelUpModal"
+import { LinkinGithub } from "../components/LinkinGithub";
 
 interface Challenge {
   type: "body" | "eye";
@@ -20,6 +21,7 @@ interface ChallengesContextData {
   resetChallenge: () => void;
   completeChallenge: () => void;
   closeLevelUpModal: () => void;
+  addUserData: (name: string, github: string) => void;
 }
 
 interface ChallengesProviderProps {
@@ -40,7 +42,10 @@ export function ChallengesProvider({
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
 
   const [activeChallenge, setActiveChallenge] = useState(null);
-  const [isLoveUpModelOpen, setIsLevelUpModalOpen] = useState(false);
+  const [isLevelUpModelOpen, setIsLevelUpModalOpen] = useState(false);
+
+  const [username, setUsername] = useState("");
+  const [userImage, setUserImage] = useState("");
 
   const experienceToNextLevel = Math.pow((level + 1)* 4, 2);
 
@@ -53,6 +58,11 @@ export function ChallengesProvider({
     Cookies.set('currentExperience', String(currentExperience));
     Cookies.set('challengesCompleted', String(challengesCompleted));
   }, [level, currentExperience, challengesCompleted])
+
+  useEffect(() => {
+    Cookies.set('username', String(username));
+    Cookies.set('userImage', String(userImage));
+  }, [username, userImage])
 
   function levelUp() {
     setLevel(level + 1)
@@ -100,6 +110,10 @@ export function ChallengesProvider({
     setChallengesCompleted(challengesCompleted + 1);
   }
 
+  function addUserData(name: string, github: string) {
+    setUsername(name);
+    setUserImage(`https://github.com/${github}`)
+  }
   return (
     <ChallengesContext.Provider
       value={{
@@ -112,12 +126,15 @@ export function ChallengesProvider({
         resetChallenge,
         experienceToNextLevel,
         completeChallenge,
-        closeLevelUpModal
+        closeLevelUpModal,
+        addUserData,
       }}
     >
       {children}
 
-      {isLoveUpModelOpen && <LevelUpModel />}
+      {isLevelUpModelOpen && <LevelUpModel />}
+
+      {username != "" && <LinkinGithub />}
      </ChallengesContext.Provider>
   );
 }
