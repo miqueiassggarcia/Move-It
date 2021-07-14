@@ -16,12 +16,13 @@ interface ChallengesContextData {
   challengesCompleted: number;
   activeChallenge: Challenge;
   experienceToNextLevel: number;
+  user: JSON;
   levelUp: () => void;
   startNewChallenge: () => void;
   resetChallenge: () => void;
   completeChallenge: () => void;
   closeLevelUpModal: () => void;
-  addUserData: (name: string, github: string) => void;
+  addUserData: (user: JSON) => void;
 }
 
 interface ChallengesProviderProps {
@@ -44,8 +45,7 @@ export function ChallengesProvider({
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [isLevelUpModelOpen, setIsLevelUpModalOpen] = useState(false);
 
-  const [username, setUsername] = useState("");
-  const [userImage, setUserImage] = useState("");
+  const [user, setUser] = useState(JSON);
 
   const experienceToNextLevel = Math.pow((level + 1)* 4, 2);
 
@@ -60,9 +60,14 @@ export function ChallengesProvider({
   }, [level, currentExperience, challengesCompleted])
 
   useEffect(() => {
-    Cookies.set('username', String(username));
-    Cookies.set('userImage', String(userImage));
-  }, [username, userImage])
+    Cookies.set('username', String(user));
+  }, [user])
+
+  function addUserData(user: JSON) {
+    setUser(user);
+  }
+
+  {console.log(user)}
 
   function levelUp() {
     setLevel(level + 1)
@@ -110,10 +115,6 @@ export function ChallengesProvider({
     setChallengesCompleted(challengesCompleted + 1);
   }
 
-  function addUserData(name: string, github: string) {
-    setUsername(name);
-    setUserImage(`https://github.com/${github}`)
-  }
   return (
     <ChallengesContext.Provider
       value={{
@@ -128,13 +129,14 @@ export function ChallengesProvider({
         completeChallenge,
         closeLevelUpModal,
         addUserData,
+        user,
       }}
     >
       {children}
 
       {isLevelUpModelOpen && <LevelUpModel />}
 
-      {username != "" && <LinkinGithub />}
+      {user == JSON && <LinkinGithub />}
      </ChallengesContext.Provider>
   );
 }
