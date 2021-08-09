@@ -1,21 +1,21 @@
+import axios from "axios";
 import { useContext, useState } from "react";
-import { ChallengesContext } from "../contexts/ChallengesContext";
+import { ProfileContext } from "../contexts/ProfileContext";
 import styles from "../styles/components/LinkingGithub.module.css"
 
 export function LinkinGithub() {
-  const { addUserData } = useContext(ChallengesContext);
+  const { addUserData } = useContext(ProfileContext);
   const [user, setUser] = useState("");
 
   function handleUser(event) {
-    setUser(`https://api.github.com/users/${event.target.value}`);
-    
+    setUser(event.target.value);
   }
 
-  {console.log(user)}
-
-  // function handleSubmitUser() {
-  //   addUserData("https://api.github.com/users/{user}");
-  // }
+  async function getUserData() {
+    const githubData: JSON = await axios.get(`https://api.github.com/users/${user}`)
+    addUserData(githubData);
+    console.log(githubData);
+  }
 
   return (
     <div className={styles.overlay}>
@@ -23,7 +23,7 @@ export function LinkinGithub() {
         <div className={styles.content}>
           <img src="/icons/github.svg" alt="Github" />
           <input type="text" id="github_username" onChange={handleUser} placeholder="Github username" />
-          <button type="button" onClick={handleUser}>Adicionar</button>
+          <button type="button" onClick={getUserData}>Adicionar</button>
         </div>
       </div>
     </div>

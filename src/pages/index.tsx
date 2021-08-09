@@ -10,6 +10,7 @@ import Head from "next/head";
 
 import styles from "../styles/pages/Home.module.css"
 import { CountdownProvider } from "../contexts/CountdownContext";
+import { ProfileProvider } from "../contexts/ProfileContext";
 
 interface HomeProps {
   level: number;
@@ -32,14 +33,16 @@ export default function Home(props: HomeProps) {
 
         <CountdownProvider>
           <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
+            <ProfileProvider>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </ProfileProvider>
           </section>
         </CountdownProvider>
       </div>

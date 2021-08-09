@@ -15,14 +15,12 @@ interface ChallengesContextData {
   currentExperience: number;
   challengesCompleted: number;
   activeChallenge: Challenge;
-  experienceToNextLevel: number;
-  user: JSON;
+  experienceToNextLevel: number; 
   levelUp: () => void;
   startNewChallenge: () => void;
   resetChallenge: () => void;
   completeChallenge: () => void;
   closeLevelUpModal: () => void;
-  addUserData: (user: JSON) => void;
 }
 
 interface ChallengesProviderProps {
@@ -45,8 +43,6 @@ export function ChallengesProvider({
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [isLevelUpModelOpen, setIsLevelUpModalOpen] = useState(false);
 
-  const [user, setUser] = useState(JSON);
-
   const experienceToNextLevel = Math.pow((level + 1)* 4, 2);
 
   useEffect(() => {
@@ -58,16 +54,6 @@ export function ChallengesProvider({
     Cookies.set('currentExperience', String(currentExperience));
     Cookies.set('challengesCompleted', String(challengesCompleted));
   }, [level, currentExperience, challengesCompleted])
-
-  useEffect(() => {
-    Cookies.set('username', String(user));
-  }, [user])
-
-  function addUserData(user: JSON) {
-    setUser(user);
-  }
-
-  {console.log(user)}
 
   function levelUp() {
     setLevel(level + 1)
@@ -128,15 +114,11 @@ export function ChallengesProvider({
         experienceToNextLevel,
         completeChallenge,
         closeLevelUpModal,
-        addUserData,
-        user,
       }}
     >
       {children}
 
       {isLevelUpModelOpen && <LevelUpModel />}
-
-      {user == JSON && <LinkinGithub />}
      </ChallengesContext.Provider>
   );
 }
