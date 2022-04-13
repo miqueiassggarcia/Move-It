@@ -1,34 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend-Move-It
 
-## Getting Started
+## ⚡ Tecnologias utilizadas
+<div>
+  <img align="center" alt="HTML5" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original-wordmark.svg" />
+  <img align="center" alt="CCS3" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original-wordmark.svg" />
+  <img align="center" alt="REACT" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" />
+  <img align="center" alt="NEXT" height="40" width="50" src="https://github.com/miqueiassggarcia/miqueiassggarcia/blob/main/Icons/nextjs-original-wordmark.svg" />
+  <img align="center" alt="TYPESCRIPT" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
+  <img align="center" alt="NODEJS" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" />
+  <br><br>
+</div>
 
-First, run the development server:
+### Iniciar aplicação:
+* Os requisitos para iniciar a aplicação é ter o node intalado na máquina, que pode ser [baixado](https://nodejs.org/en/download/) ou instalado através do seu [gerenciador de pacotes](https://nodejs.org/en/download/package-manager/).
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Opcionalmente pode ser usado o [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable) no lugar do npm, como gerenciador de pacotes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Já com o node instalado, entre no diretório do projeto pelo terminal dê os seguintes comandos:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+* ``yarn install`` ou ``npm install`` para instalar as bibliotecas necessárias.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+* ``yarn start`` ou ``npm start`` para iniciar o projeto e abrir ele no seu navegador.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Projeto inicializado com ``create-react-app --template typescript`` [Create React App](https://github.com/facebook/create-react-app).
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Projeto criado na next level week 4.
